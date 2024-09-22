@@ -45,6 +45,9 @@
 (use-package magit :ensure t :config
   (setq magit-completing-read-function 'magit-ido-completing-read))
 
+;; which-key
+(use-package which-key :ensure t :config (which-key-mode))
+
 
 ;; --- IDK WHATS HERE ---
 ;;Useful for configuring built-in emacs features.
