@@ -29,9 +29,9 @@
 		   (setq dashboard-set-file-icons t))
 
 ;;eglot
-;; (use-package eldoc :ensure t)
-;; (use-package jsonrpc :ensure t)
-;; (use-package eglot :ensure t)
+(use-package eldoc :ensure t)
+(use-package jsonrpc :ensure t)
+(use-package eglot :ensure t)
 
 ;;company-mode
 (use-package company :ensure t :config (global-company-mode))
