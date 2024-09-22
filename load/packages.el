@@ -6,6 +6,8 @@
 ;;smex
 (use-package smex :ensure t
   :config (smex-initialize) :bind ("M-x" . smex))
+(use-package ido-completing-read+ :ensure t
+  :config (ido-ubiquitous-mode t))
 
 ;;gruber-darker
 (use-package gruber-darker-theme
@@ -27,9 +29,12 @@
 		   (setq dashboard-set-file-icons t))
 
 ;;eglot
-(use-package eldoc :ensure t)
-(use-package jsonrpc :ensure t)
-(use-package eglot :ensure t)
+;; (use-package eldoc :ensure t)
+;; (use-package jsonrpc :ensure t)
+;; (use-package eglot :ensure t)
+
+;;company-mode
+(use-package company :ensure t :config (global-company-mode))
 
 ;;undo-hist
 (use-package undohist :ensure t :config (undohist-initialize))
@@ -37,7 +42,8 @@
 
 ;;magit
 (use-package transient :ensure t)
-(use-package magit :ensure t)
+(use-package magit :ensure t :config
+  (setq magit-completing-read-function 'magit-ido-completing-read))
 
 
 ;; --- IDK WHATS HERE ---
