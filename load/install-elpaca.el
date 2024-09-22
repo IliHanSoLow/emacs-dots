@@ -36,3 +36,6 @@
     (load "./elpaca-autoloads")))
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
+
+;;Windows users must be able to create symlinks if they arent, uncomment this
+(elpaca-no-symlink-mode)

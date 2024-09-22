@@ -12,6 +12,9 @@
 (require 'recentf)
 (recentf-mode 1)
 
+;;start maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
 ;; enable ido mode
 (require 'ido)
 (ido-mode t)

@@ -3,7 +3,7 @@
 
 (cond
  ((eq system-type 'windows-nt)
-  (load "~/AppData/Roaming/emacs/main.el")
+  (load "~/.emacs.d/main.el")
   )
  ((eq system-type 'gnu/linux)
   (load "~/.config/emacs/main.el" )
