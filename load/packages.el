@@ -48,6 +48,12 @@
 ;; which-key
 (use-package which-key :ensure t :config (which-key-mode))
 
+;; go-mode
+(elpaca go-mode :source "ELPA" )
+
+
+
+
 
 ;; --- IDK WHATS HERE ---
 ;;Useful for configuring built-in emacs features.
