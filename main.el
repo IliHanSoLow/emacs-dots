@@ -1,3 +1,4 @@
+
 ;; --- GENERAL SETUP ---
 (setq inhibit-startup-screen t)
 (set-frame-font "Victor Mono 16")
@@ -13,7 +14,10 @@
 (recentf-mode 1)
 
 ;;start maximized
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(cond
+ ((eq system-type 'windows-nt)
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+  ))
 
 ;; enable ido mode
 (require 'ido)
