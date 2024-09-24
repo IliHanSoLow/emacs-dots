@@ -45,3 +45,30 @@
 (global-set-key (kbd "C-c h r") 'helm-recentf)
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
+
+;; vi %
+(defun goto-match-paren (&optional arg)
+  "Jump to matching parenthesis according to `show-paren-mode'.
+When called with a prefix or EDIT is t, jump to matching
+parenthesis such that insertion will happen inside the list.
+\(fn &optional EDIT)"
+  (interactive "p")
+  ;; data is either nil or a list of form:
+  ;;     (HERE-BEG HERE-END THERE-BEG THERE-END MISMATCH)
+  (let ((data (show-paren--default))
+        (edit (not (eq arg 1))))
+    (when data
+      ;; Found a parenthesis
+      (let* ((here-beg (nth 0 data))
+			 (here-end (nth 1 data))
+             (there-beg (nth 2 data))
+             (there-end (nth 3 data))
+             (mismatch (nth 4 data)))
+        (if (not mismatch)
+            ;; At parenthesis with a match
+            (cond ((<= (point) here-beg)  ; at opening
+                   (goto-char there-end)
+                   (if edit (backward-char 1)))
+                  ((goto-char there-beg)  ; at closing
+                   (if edit (forward-char 1)))))))))
+(global-set-key (kbd "C-%") 'goto-match-paren)
