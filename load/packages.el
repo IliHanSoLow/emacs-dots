@@ -38,7 +38,7 @@
 
 ;;undo-hist
 (use-package undohist :ensure t :config (undohist-initialize))
-(use-package vundo :ensure t)
+(use-package undo-fu :ensure t)
 
 ;;magit
 (use-package transient :ensure t)
@@ -51,7 +51,14 @@
 ;; go-mode
 (elpaca go-mode :source "ELPA" )
 
+;; typst
+(use-package typst-ts-mode
+  :ensure (:type git :host codeberg :repo "meow_king/typst-ts-mode"
+                 :files (:defaults "*.el")))
 
+;; EVIL 👿
+(elpaca goto-chg.el)
+(elpaca evil :config t (evil-mode 1)) ;; change to 1 if autostart
 
 
 

@@ -1,4 +1,3 @@
-
 ;; --- GENERAL SETUP ---
 (setq inhibit-startup-screen t)
 (set-frame-font "Victor Mono 16")
