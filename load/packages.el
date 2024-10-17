@@ -58,7 +58,7 @@
 
 ;; EVIL 👿
 (elpaca goto-chg.el)
-(elpaca evil :config t (evil-mode 1)) ;; change to 1 if autostart
+(elpaca evil :config t (evil-mode 0)) ;; change to 1 if autostart
 
 
 
