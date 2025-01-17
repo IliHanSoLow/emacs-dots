@@ -71,8 +71,18 @@
 (use-package jsonrpc :ensure t :after eldoc)
 (use-package eglot :ensure t :after eldoc)
 
-;; emacs
+;; nix
 (use-package nix-mode :ensure t :mode "\\.nix\\'")
+
+;; yaml
+;; (use-package yaml-mode
+  ;; :ensure t
+  ;; :mode "\\.ya?ml\\'"
+  ;; :hook (yaml-mode . (lambda ()
+                       ;; (define-key yaml-mode-map "\C-m" 'newline-and-indent))))
+(use-package yaml-pro :ensure t :config (add-hook 'yaml-ts-mode-hook #'yaml-pro-ts-mode 100))
+(add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
+
 
 ;; Miscellaneous
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))

@@ -11,6 +11,7 @@
 (setq-default tab-width 4)
 (require 'recentf)
 (recentf-mode 1)
+(ffap-bindings)
 
 ;;start maximized
 (cond
@@ -49,6 +50,29 @@
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
 
+(add-to-list 'recentf-exclude "\\.windows\\'")
+(add-to-list 'recentf-exclude "\\.revive\\'")
+(add-to-list 'recentf-exclude "\\ido.last\\'")
+
+(setq treesit-language-source-alist
+   '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+     (cmake "https://github.com/uyha/tree-sitter-cmake")
+     (css "https://github.com/tree-sitter/tree-sitter-css")
+     (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+     (go "https://github.com/tree-sitter/tree-sitter-go")
+     (html "https://github.com/tree-sitter/tree-sitter-html")
+     (javascript "https://github.com/tree-sitter/tree-sitter-javascript" "master" "src")
+     (json "https://github.com/tree-sitter/tree-sitter-json")
+     (make "https://github.com/alemuller/tree-sitter-make")
+     (markdown "https://github.com/ikatyang/tree-sitter-markdown")
+     (python "https://github.com/tree-sitter/tree-sitter-python")
+     (toml "https://github.com/tree-sitter/tree-sitter-toml")
+     (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+     (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+     (yaml "https://github.com/ikatyang/tree-sitter-yaml")))
+
+;; ---- ---- ---- ----
+
 ;; vi %
 (defun goto-match-paren (&optional arg)
   "Jump to matching parenthesis according to `show-paren-mode'.
@@ -75,53 +99,3 @@ parenthesis such that insertion will happen inside the list.
                   ((goto-char there-beg)  ; at closing
                    (if edit (forward-char 1)))))))))
 (global-set-key (kbd "C-%") 'goto-match-paren)
-
-;; org
-(setq org-hide-emphasis-markers t)
-(font-lock-add-keywords 'org-mode
-                        '(("^ *\\([-]\\) "
-                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-(let* ((variable-tuple
-        (cond ((x-list-fonts "ETBembo")         '(:font "ETBembo"))
-              ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
-              ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
-              ((x-list-fonts "Verdana")         '(:font "Verdana"))
-              ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
-              (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-       (base-font-color     (face-foreground 'default nil 'default))
-       (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-
-  (custom-theme-set-faces
-   'user
-   `(org-level-8 ((t (,@headline ,@variable-tuple))))
-   `(org-level-7 ((t (,@headline ,@variable-tuple))))
-   `(org-level-6 ((t (,@headline ,@variable-tuple))))
-   `(org-level-5 ((t (,@headline ,@variable-tuple))))
-   `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-   `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-   `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-   `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-   `(org-document-title ((t (,@headline ,@variable-tuple :height 2.0 :underline nil))))))
-
-(custom-theme-set-faces
- 'user
- '(variable-pitch ((t (:family "ETBembo" :height 180 :weight thin))))
- '(fixed-pitch ((t ( :family "Fira Code Retina" :height 160)))))
-
-(add-hook 'org-mode-hook 'visual-line-mode)
-
-(custom-theme-set-faces
- 'user
- '(org-block ((t (:inherit fixed-pitch))))
- '(org-code ((t (:inherit (shadow fixed-pitch)))))
- '(org-document-info ((t (:foreground "dark orange"))))
- '(org-document-info-keyword ((t (:inherit (shadow fixed-pitch)))))
- '(org-indent ((t (:inherit (org-hide fixed-pitch)))))
- '(org-link ((t (:foreground "royal blue" :underline t))))
- '(org-meta-line ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-property-value ((t (:inherit fixed-pitch))) t)
- '(org-special-keyword ((t (:inherit (font-lock-comment-face fixed-pitch)))))
- '(org-table ((t (:inherit fixed-pitch :foreground "#83a598"))))
- '(org-tag ((t (:inherit (shadow fixed-pitch) :weight bold :height 0.8))))
- '(org-verbatim ((t (:inherit (shadow fixed-pitch))))))
