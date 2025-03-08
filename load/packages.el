@@ -18,14 +18,17 @@
 
 ;; dashboard
 (use-package nerd-icons :ensure t)
+
 (use-package dashboard :ensure t
   :config  (dashboard-setup-startup-hook)
-           (setq dashboard-items '((recents . 5)
-                                   (bookmarks . 5)
-                                   (agenda . 5)))
-           (setq dashboard-display-icons-p t)
-           (setq dashboard-icon-type 'nerd-icons)
-           (setq dashboard-set-file-icons t))
+  (setq dashboard-projects-backend 'project-el)
+  (setq dashboard-items '((recents   . 5)
+						  (projects  . 5)
+                          (bookmarks . 5)
+                          (agenda    . 5)))
+  (setq dashboard-display-icons-p t)
+  (setq dashboard-icon-type 'nerd-icons)
+  (setq dashboard-set-file-icons t))
 
 
 ;; company-mode
@@ -83,6 +86,16 @@
 (use-package yaml-pro :ensure t :config (add-hook 'yaml-ts-mode-hook #'yaml-pro-ts-mode 100))
 (add-to-list 'auto-mode-alist '("\\.ya?ml\\'" . yaml-ts-mode))
 
+;; expand-region
+(use-package expand-region :ensure t :config (global-set-key (kbd "C-;") 'er/expand-region))
+
+(use-package guess-language :ensure t :config
+  (setq guess-language-langcodes '((en . ("en_GB" "English"))
+								   (de . ("de_DE", "German"))))
+  (setq guess-language-min-paragraph-length 35))
+
+;; vterm
+(use-package vterm :ensure t)
 
 ;; Miscellaneous
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))

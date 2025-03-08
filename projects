@@ -1,3 +1,2 @@
 ;;; -*- lisp-data -*-
-(("~/.config/emacs/")
- ("~/dotfiles/nixos/"))
+(("/home/ilian/.config/emacs/") ("/home/ilian/dotfiles/nixos/"))

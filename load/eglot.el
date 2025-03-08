@@ -6,3 +6,4 @@
   (dolist (mode '((nix-mode . ("nixd"))))
     (add-to-list 'eglot-server-programs mode)))
 (add-hook 'nix-mode-hook #'eglot-ensure)
+(add-hook 'godot-mode-hook #'eglot-ensure)

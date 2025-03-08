@@ -1,9 +1,15 @@
 ;; --- GENERAL SETUP ---
 (setq inhibit-startup-screen t)
-(set-frame-font "Victor Mono 16")
+(set-frame-font "Victor Mono 16" t t)
 (tool-bar-mode 0)
 (menu-bar-mode 0)
 (scroll-bar-mode 0)
+(add-hook 'server-after-make-frame-hook
+		  (lambda ()
+			(set-frame-font "Victor Mono 16" t t)
+			(tool-bar-mode 0)
+			(menu-bar-mode 0)
+			(scroll-bar-mode 0)))
 (column-number-mode 1)
 (show-paren-mode 1)
 (setq display-line-numbers-type 'relative)
@@ -13,11 +19,13 @@
 (recentf-mode 1)
 (ffap-bindings)
 
+(setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+
 ;;start maximized
-(cond
- ((eq system-type 'windows-nt)
-  (add-to-list 'default-frame-alist '(fullscreen . maximized))
-  ))
+;;  (cond
+;;  ((eq system-type 'windows-nt)
+;;   (add-to-list 'default-frame-alist '(fullscreen . maximized))
+;;   ))
 
 ;; enable ido mode
 (require 'ido)
@@ -50,10 +58,15 @@
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
 
+;; exclude files from recentf
 (add-to-list 'recentf-exclude "\\.windows\\'")
 (add-to-list 'recentf-exclude "\\.revive\\'")
 (add-to-list 'recentf-exclude "\\ido.last\\'")
 
+;; hunspell
+(setq ispell-program-name "hunspell")
+
+;; treesitter lang sources
 (setq treesit-language-source-alist
    '((bash "https://github.com/tree-sitter/tree-sitter-bash")
      (cmake "https://github.com/uyha/tree-sitter-cmake")
