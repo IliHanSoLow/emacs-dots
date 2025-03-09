@@ -94,8 +94,20 @@
 								   (de . ("de_DE", "German"))))
   (setq guess-language-min-paragraph-length 35))
 
-;; vterm
-(use-package vterm :ensure t)
+;; eat
+(use-package eat :ensure(
+  :type git
+  :host codeberg
+  :repo "akib/emacs-eat"
+  :files ("*.el" ("term" "term/*.el") "*.texi"
+          "*.ti" ("terminfo/e" "terminfo/e/*")
+          ("terminfo/65" "terminfo/65/*")
+          ("integration" "integration/*")
+          (:exclude ".dir-locals.el" "*-tests.el")))
+  :config
+  (global-set-key (kbd "C-c t") 'eat-project-other-window))
+
+
 
 ;; Miscellaneous
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))

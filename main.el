@@ -57,6 +57,7 @@
 (global-set-key (kbd "C-c h r") 'helm-recentf)
 (global-set-key (kbd "M-p") 'move-text-up)
 (global-set-key (kbd "M-n") 'move-text-down)
+(global-set-key (kbd "C-c C-k") 'kill-current-buffer)
 
 ;; exclude files from recentf
 (add-to-list 'recentf-exclude "\\.windows\\'")
