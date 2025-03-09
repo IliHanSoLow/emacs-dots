@@ -41,7 +41,8 @@
 ;; magit
 (use-package transient :ensure t)
 (use-package magit :ensure t :config
-  (setq magit-completing-read-function 'magit-ido-completing-read))
+  (setq magit-completing-read-function 'magit-ido-completing-read)
+  (global-set-key (kbd "C-c C-c") 'magit-status))
 
 ;; which-key
 (use-package which-key :ensure t :config (which-key-mode))
