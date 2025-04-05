@@ -3,6 +3,10 @@
 (set-locale-environment "en_US.UTF-8")
 (cond
  ((eq system-type 'windows-nt)
-  (add-to-list 'load-path "~/.emacs.d/load/"))
+  (let* ((home (getenv "HOME"))
+         (config-dir (if home
+						 (expand-file-name ".config/emacs/load" home)
+					   ("~/.emacs.d/load" ))))
+    (add-to-list 'load-path config-dir)))
  ((eq system-type 'gnu/linux)
   (add-to-list 'load-path "~/.config/emacs/load/")))

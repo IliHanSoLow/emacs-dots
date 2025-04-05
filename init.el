@@ -1,6 +1,5 @@
-(load "install-elpaca")
 (load "packages")
-(load "eglot")
+(load "eglot-config")
 
 (cond
  ((eq system-type 'windows-nt)
@@ -12,16 +11,4 @@
   (setq conf-dir "~/.config/emacs/")
   ))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages '(smex gruber-darker-theme))
- '(warning-suppress-types '((comp) (emacs))))
-
-
-;; wieder meins
-(add-hook 'elpaca-after-init-hook
-          (lambda ()
-			(load "post-init")))
+(load "evil-config")
