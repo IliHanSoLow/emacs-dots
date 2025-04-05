@@ -1,7 +1,6 @@
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-kj ksj    ksj fsk f
 (add-to-list 'package-archives '("gnu"   . "https://elpa.gnu.org/packages/"))
 
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
@@ -127,6 +126,8 @@ kj ksj    ksj fsk f
 ;; imenu-anywhere
 (use-package imenu-anywhere)
 
+;; General
+(use-package general)
 
 ;; Miscellaneous
 (use-package emacs :ensure nil :config (setq ring-bell-function #'ignore))
